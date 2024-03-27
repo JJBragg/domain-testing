@@ -1,0 +1,15 @@
+mutation score_create(
+  $title: String
+) {
+  record: record_create(
+    record: {
+      table: "score"
+      properties: [
+        { name: "title", value: $title }
+      ]
+    }
+  ) {
+    id
+    title: property(name: "title")
+  }
+}
