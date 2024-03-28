@@ -1,34 +1,41 @@
 <div>
-<p>JJ's Scores</p>
+<h1>JJ's Scores</h1>
+<h2>Welcome to my scores!</h2>
 </div>
 
-<div>
-  <h2>
-  Welcome to my scores!
-  </h2>
-</div>
+
+
+{% liquid
+  graphql scores = 'score/search'
+%}
 
 <!-- list of items -->
 <ul>
-  <li>
-    First item
-    <form action="" method="post">
-      <button type="submit">Mark as done</button>
-    </form>
-  </li>
-  <li>
-    Second item
-    <form action="" method="post">
-      <button type="submit">Mark as done</button>
-    </form>
-  </li>
+  {% for score in scores.records.results %}
+    <li>
+      {{ score.title }}
+      <form action="/score/delete" method="post">
+      <input type="hidden" name="id" value="{{ score.id }}">
+      <button type="submit">Remove score</button>
+      </form>
+    </li>
+  {% endfor %}
 </ul>
 
 <!-- information shown when the list is empty -->
-<div>There are no items in the list.</div>
-<!-- form for adding new item -->
+{% if scores.records.total_entries == 0 %}
+  <div>There are no scores in the list.</div>
+{% endif %}
 
-<form action="" method="post">
+<!-- form for adding new scores -->
+<div>
+<form action="/score/create" method="post">
   <input type="text" name="title">
-  <button type="submit">Add item</button>
+  <button type="submit" style="color:blue;">Add Score</button>
 </form>
+</div>
+
+
+
+
+

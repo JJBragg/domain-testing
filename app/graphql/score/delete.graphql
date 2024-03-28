@@ -1,0 +1,10 @@
+mutation score_delete(
+  $id: ID!
+) {
+  record: record_delete(
+    table: "score"
+    id: $id
+  ) {
+    id
+  }
+}

@@ -1,0 +1,17 @@
+query score_search {
+  records: records(
+    per_page: 100
+    filter: {
+      table: { value: "score" }
+    }
+    sort: {
+      updated_at: { order: DESC }
+    }
+  ) {
+    total_entries
+    results {
+      id
+      title: property(name: "title")
+    }
+  }
+}
