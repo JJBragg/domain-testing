@@ -1,7 +1,7 @@
-<div>
-<h1>JJ's Scores</h1>
-<h2>Welcome to my scores!</h2>
-</div>
+
+<h1>JJ's recent rounds of golf</h1>
+<h2>Welcome to my golf scores!</h2>
+
 
 
 
@@ -16,7 +16,7 @@
       {{ score.title }}
       <form action="/score/delete" method="post">
       <input type="hidden" name="id" value="{{ score.id }}">
-      <button type="submit">Remove score</button>
+      <button type="submit">Remove</button>
       </form>
     </li>
   {% endfor %}
@@ -24,7 +24,7 @@
 
 <!-- information shown when the list is empty -->
 {% if scores.records.total_entries == 0 %}
-  <div>There are no scores in the list.</div>
+  <div>There are no scores to show.</div>
 {% endif %}
 
 <!-- form for adding new scores -->
